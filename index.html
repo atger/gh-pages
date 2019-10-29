@@ -70,29 +70,38 @@
   <div class="container-fluid p-0">
 
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
-      <div class="w-100">
-        <h1 class="mb-0">Anand
-          <span class="text-primary">Pratap Singh</span>
-        </h1>
-        <div class="subheading mb-5">Mathikere, Bengluru ·
-          <a href="mailto:anand.maildrop@gmail.com">anand.maildrop@gmail.com</a>
-        </div>
-        <p class="lead mb-5">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-        <div class="social-icons">
-          <a href="#">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a href="#">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="#">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-        </div>
-      </div>
+      <article>
+        <h1> C++ implementation of Parser Classes</h1>
+        <p> It is common in bioinformatics to work with various different file formats
+          . It common and it's a challange also. Currently, various libraries are available for
+          achieving such a task. But it's never be easier for new programmer to understand these
+          libraries. Here a simple program in c++
+          <code>
+            #include <iostream>
+            #include <fstream>
+            #include <string>
+
+            using namespace std;
+
+            int main(int argc, char** argv)
+            {
+              if(argc < 2) cout << "Usage :" << argv[0] << endl;
+              else
+              {
+                ifstream file(argv[1]);
+                while(file)
+                {
+                  string line;
+                  getline(file,line);
+                  if(!line.empty())
+                  {
+                    cout << line << endl;
+                  }
+                }
+              }
+            }
+          </code>
+      </article>
     </section>
 
     <hr class="m-0">
