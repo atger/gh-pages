@@ -71,33 +71,62 @@
 
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
       <article>
-        <h1> C++ implementation of Parser Classes</h1>
-        <p> It is common in bioinformatics to work with various different file formats
-          . It common and it's a challange also. Currently, various libraries are available for
-          achieving such a task. But it's never be easier for new programmer to understand these
-          libraries. Here a simple program in c++
+        <h1> Parsing Fasta Files</h1>
+        <p> Fasta file is common file format in bioinformatics to represet sequences.
+          <br> Here, it is my parser implementation to parse fasta file.
+          <br>
           <pre><code>
-            #include &lt;iostream&gt;
+            // fasta.hpp
+            #include &lt;vector&gt;
+            #include &lt;string&gt;
+
+            struct Fasta;
+            std::vector&lt;string&gt; read_fasta_file(std::string);
+          </code></pre>
+          <pre><code>
+            // fasta.cpp
+            #include &lt;vector&gt;
             #include &lt;fstream&gt;
+            #include &lt;string&lt;
+
+            struct Fasta {
+              std::string header,sequence;
+            };
+
+            std::vector&lt;string&gt; read_fasta_file(std::string filename)
+            {
+              std::vector&lt;string&gt; fasta_records;
+              std::ifstream file(filename);
+              while(file)
+              {
+                std::string head,seq;
+                Fasta record;
+                getline(file,head);
+                getline(file,seq);
+                record.header = head;
+                record.sequence = seq;
+                fasta_records.push_back(record);
+              }
+              return fasta_records;
+            }
+          </code></pre>
+          <p> Here Main program </p>
+          <pre><code>
+            // main.cpp
+            #include &lt;iostream&gt;
+            #include &lt;vector&gt;
             #include &lt;string&gt;
 
             using namespace std;
+            using Fasta_Records = vector&lt;Fasta&gt;;
 
             int main(int argc, char** argv)
             {
               if(argc < 2) cout << "Usage :" << argv[0] << endl;
               else
               {
-                ifstream file(argv[1]);
-                while(file)
-                {
-                  string line;
-                  getline(file,line);
-                  if(!line.empty())
-                  {
-                    cout << line << endl;
-                  }
-                }
+                Fasta_Records records = read_fasta_file(argv[1]);
+                for (auto [head,seq] : records) cout << head << "\n" << seq << endl;
               }
             }
           </code></pre>
